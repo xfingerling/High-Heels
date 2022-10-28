@@ -106,7 +106,7 @@ public class Player : MonoBehaviour, IPlayer
 
         _characterController.center = new Vector3(0, (1 - heelHeight) - _heelCount, 0);
 
-        transform.position = new Vector3(0, heelHeight + _heelCount, 0);
+        transform.position = new Vector3(transform.position.x, heelHeight + _heelCount, transform.position.z);
 
         _heelCount++;
     }
@@ -116,7 +116,7 @@ public class Player : MonoBehaviour, IPlayer
         var leftActive = _poolLeftHeels.FindAll(heel => heel.activeInHierarchy);
         var rightActive = _poolRightHeels.FindAll(heel => heel.activeInHierarchy);
 
-        for (int i = leftActive.Count; i > 0; i--)
+        for (int i = leftActive.Count; i > value; i--)
         {
             int index = i - 1;
 
