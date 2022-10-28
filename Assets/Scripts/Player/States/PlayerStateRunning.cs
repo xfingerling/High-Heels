@@ -20,9 +20,10 @@ public class PlayerStateRunning : PlayerStateBase, IState
 
     public void Update()
     {
-        MoveZ();
+        //MoveZ();
 
         //player.MoveX(PlayerInput.Instance.TouchPosition);
+        player.GetComponent<PlayerMove>().MoveX();
     }
 
     private void MoveZ()

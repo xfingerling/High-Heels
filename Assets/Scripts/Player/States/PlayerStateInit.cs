@@ -1,3 +1,5 @@
+using UnityEngine;
+
 public class PlayerStateInit : PlayerStateBase, IState
 {
     public void Construct()
@@ -12,7 +14,7 @@ public class PlayerStateInit : PlayerStateBase, IState
 
     public void Transition()
     {
-        if (PlayerInput.Instance.Tap)
+        if (Input.GetMouseButtonDown(0))
             player.PlayerState.SetState<PlayerStateRunning>();
     }
 
