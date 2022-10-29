@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 8814182564054311910}
   - component: {fileID: 5615264123030708472}
   - component: {fileID: 7324310897126988725}
-  m_Layer: 6
+  m_Layer: 8
   m_Name: Cube (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -163,7 +163,7 @@ PrefabInstance:
     - target: {fileID: 5094181838485554419, guid: 0f42ce5b6cad20e429535b79c04605d1,
         type: 3}
       propertyPath: m_IsTrigger
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5303474145233841885, guid: 0f42ce5b6cad20e429535b79c04605d1,
         type: 3}

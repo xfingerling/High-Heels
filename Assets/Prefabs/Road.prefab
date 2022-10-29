@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 8602119611023396567}
   - component: {fileID: 2969562473336301404}
   - component: {fileID: 8676889668504172226}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Ground
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -109,7 +109,7 @@ GameObject:
   - component: {fileID: 5074792996770486568}
   - component: {fileID: 4866916500147890776}
   - component: {fileID: 8846958798982286350}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Side (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -203,7 +203,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5298121960411998315}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Road
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -240,7 +240,7 @@ GameObject:
   - component: {fileID: 3811007584826388909}
   - component: {fileID: 7225832276809546993}
   - component: {fileID: 6799752876914637128}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Side
   m_TagString: Untagged
   m_Icon: {fileID: 0}

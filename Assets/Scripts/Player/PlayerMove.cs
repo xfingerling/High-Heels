@@ -4,20 +4,16 @@ public class PlayerMove : MonoBehaviour
 {
     [SerializeField] private float runningSpeed;
     [SerializeField] private float xSpeed;
+    [SerializeField] private int _limitX = 2;
 
     private Player _player;
-    private float limitX = 1;
-
-    private Camera _cam;
-    private Vector3 _startTouchPos, _currentPosPlayer, _targetPosPlayer;
 
     private void Awake()
     {
         _player = GetComponent<Player>();
-        _cam = Camera.main;
     }
 
-    public void MoveX()
+    public void Move()
     {
         float newX = 0;
         float touchXDelta = 0;
@@ -28,14 +24,22 @@ public class PlayerMove : MonoBehaviour
             touchXDelta = Input.GetAxis("Mouse X");
 
 
-        float limimDelta = Mathf.Clamp(touchXDelta, -limitX, limitX);
+        float limimDelta = Mathf.Clamp(touchXDelta, -1, 1);
         newX = xSpeed * limimDelta;
 
         Vector3 m = Vector3.zero;
         m.x = newX;
-        m.y = -2f;
-        m.z = _player.baseRunSpeed;
+        m.y = 0;
+        m.z = runningSpeed;
 
         _player.moveVector = m;
+    }
+
+    public void LimitMovementX()
+    {
+        if (transform.position.x > _limitX)
+            transform.position = new Vector3(_limitX, transform.position.y, transform.position.z);
+        else if (transform.position.x < -_limitX)
+            transform.position = new Vector3(-_limitX, transform.position.y, transform.position.z);
     }
 }

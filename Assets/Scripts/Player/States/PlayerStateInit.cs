@@ -4,6 +4,7 @@ public class PlayerStateInit : PlayerStateBase, IState
 {
     public void Construct()
     {
+        player.moveVector = Vector3.zero;
         player.Animator.SetTrigger("Idle");
     }
 
