@@ -21,6 +21,7 @@ public class PlayerState : StateBase
         CreateState<PlayerStateRunning>();
         CreateState<PlayerStateFalling>();
         CreateState<PLayerStateFinish>();
+        CreateState<PlayerStateDeath>();
     }
 
     private void SetDefaultState()
