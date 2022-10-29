@@ -1,5 +1,3 @@
-using UnityEngine;
-
 public class PlayerStateRunning : PlayerStateBase, IState
 {
     public void Construct()
@@ -20,19 +18,6 @@ public class PlayerStateRunning : PlayerStateBase, IState
 
     public void Update()
     {
-        //MoveZ();
-
-        //player.MoveX(PlayerInput.Instance.TouchPosition);
         player.GetComponent<PlayerMove>().MoveX();
-    }
-
-    private void MoveZ()
-    {
-        Vector3 m = Vector3.zero;
-
-        m.y = -2f;
-        m.z = player.baseRunSpeed;
-
-        player.moveVector = m;
     }
 }

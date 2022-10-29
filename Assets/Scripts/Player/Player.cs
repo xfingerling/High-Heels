@@ -116,7 +116,7 @@ public class Player : MonoBehaviour, IPlayer
         var leftActive = _poolLeftHeels.FindAll(heel => heel.activeInHierarchy);
         var rightActive = _poolRightHeels.FindAll(heel => heel.activeInHierarchy);
 
-        for (int i = leftActive.Count; i > value; i--)
+        for (int i = leftActive.Count; i > leftActive.Count - value; i--)
         {
             int index = i - 1;
 
@@ -130,6 +130,7 @@ public class Player : MonoBehaviour, IPlayer
     private void OnTriggerEnter(Collider other)
     {
         Wall wall = other.GetComponent<Wall>();
+        FinishWall finishWall = other.GetComponent<FinishWall>();
         Heels heels = other.GetComponent<Heels>();
 
         if (wall != null)
@@ -138,6 +139,13 @@ public class Player : MonoBehaviour, IPlayer
 
         if (heels != null)
             IncrementHeels();
+
+        if (finishWall != null)
+        {
+            DicrementHeels(finishWall.Height);
+            if (_heelCount <= 0)
+                PlayerState.SetState<PLayerStateFinish>();
+        }
     }
 
     private void OnTriggerExit(Collider other)

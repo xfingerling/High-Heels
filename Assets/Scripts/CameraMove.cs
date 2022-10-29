@@ -16,8 +16,8 @@ public class CameraMove : MonoBehaviour
     {
         if (_target == null) return;
 
-
-        transform.position = Vector3.Lerp(transform.position, _target.position - _offset, Time.deltaTime * _lerpRate);
+        Vector3 targetPos = new Vector3(0, _target.position.y, _target.position.z);
+        transform.position = Vector3.Lerp(transform.position, targetPos - _offset, Time.deltaTime * _lerpRate);
     }
 
     private void OnGameInitialized()

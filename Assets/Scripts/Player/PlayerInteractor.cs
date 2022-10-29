@@ -9,6 +9,9 @@ public class PlayerInteractor : Interactor
         base.Initialize();
 
         Player playerPrefab = Resources.Load<Player>("Player");
+        JointBox boxPrefab = Resources.Load<JointBox>("JointBox");
+
         Player = Object.Instantiate(playerPrefab);
+        Object.Instantiate(boxPrefab);
     }
 }

@@ -20,6 +20,7 @@ public class PlayerState : StateBase
         CreateState<PlayerStateInit>();
         CreateState<PlayerStateRunning>();
         CreateState<PlayerStateFalling>();
+        CreateState<PLayerStateFinish>();
     }
 
     private void SetDefaultState()
