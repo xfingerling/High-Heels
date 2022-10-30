@@ -90,10 +90,25 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 674778060573460035, guid: b10b6553adcd87243b64156edf079600,
+        type: 3}
+      propertyPath: m_Size.y
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 674778060573460035, guid: b10b6553adcd87243b64156edf079600,
+        type: 3}
+      propertyPath: m_Center.y
+      value: 1.5
+      objectReference: {fileID: 0}
     - target: {fileID: 4354892469949242409, guid: b10b6553adcd87243b64156edf079600,
         type: 3}
       propertyPath: m_Name
       value: Wall_4
+      objectReference: {fileID: 0}
+    - target: {fileID: 6306292601626277138, guid: b10b6553adcd87243b64156edf079600,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 7432451141954693189, guid: b10b6553adcd87243b64156edf079600,
         type: 3}
@@ -108,7 +123,7 @@ PrefabInstance:
     - target: {fileID: 7498154909316661867, guid: b10b6553adcd87243b64156edf079600,
         type: 3}
       propertyPath: m_Size.y
-      value: 4
+      value: 3.7
       objectReference: {fileID: 0}
     - target: {fileID: 7498154909316661867, guid: b10b6553adcd87243b64156edf079600,
         type: 3}

@@ -5,6 +5,7 @@ public class PlayerStateInit : PlayerStateBase, IState
     public void Construct()
     {
         player.moveVector = Vector3.zero;
+        player.ResetPlayer();
         player.Animator.SetTrigger("Idle");
     }
 
@@ -15,7 +16,7 @@ public class PlayerStateInit : PlayerStateBase, IState
 
     public void Transition()
     {
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonDown(1))
             player.PlayerState.SetState<PlayerStateRunning>();
     }
 

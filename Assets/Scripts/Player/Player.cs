@@ -45,27 +45,6 @@ public class Player : MonoBehaviour, IPlayer
             _prevWall = null;
     }
 
-    public void ApplyGravity()
-    {
-        verticalVelocity -= _gravity * Time.deltaTime;
-
-        if (verticalVelocity < -_terminalVelocity)
-            verticalVelocity = -_terminalVelocity;
-    }
-
-    private void UpdateMotor()
-    {
-        isGrounded = IsOnGround();
-
-        if (_currentState != null)
-        {
-            _currentState.Update();
-            _currentState.Transition();
-        }
-
-        transform.Translate(moveVector * Time.deltaTime);
-    }
-
     private void OnTriggerEnter(Collider other)
     {
         Wall wall = other.GetComponent<Wall>();
@@ -100,6 +79,34 @@ public class Player : MonoBehaviour, IPlayer
             if (_heelCount == 0)
                 PlayerState.SetState<PLayerStateFinish>();
         }
+    }
+
+    public void ResetPlayer()
+    {
+        transform.position = Vector3.zero;
+        DicrementHeels(_heelCount);
+        _heelCount = 0;
+    }
+
+    public void ApplyGravity()
+    {
+        verticalVelocity -= _gravity * Time.deltaTime;
+
+        if (verticalVelocity < -_terminalVelocity)
+            verticalVelocity = -_terminalVelocity;
+    }
+
+    private void UpdateMotor()
+    {
+        isGrounded = IsOnGround();
+
+        if (_currentState != null)
+        {
+            _currentState.Update();
+            _currentState.Transition();
+        }
+
+        transform.Translate(moveVector * Time.deltaTime);
     }
 
     private bool IsOnGround()
@@ -169,8 +176,6 @@ public class Player : MonoBehaviour, IPlayer
 
     private void CheckDeath(int value)
     {
-        Debug.Log("Value: " + value);
-        Debug.Log("Heels: " + _heelCount);
         if (value > _heelCount)
             PlayerState.SetState<PlayerStateDeath>();
     }
