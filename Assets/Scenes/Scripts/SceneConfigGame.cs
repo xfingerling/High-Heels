@@ -13,6 +13,7 @@ public class SceneConfigGame : SceneConfig
 
         CreateInteractor<LevelInteractor>(interactorsMap);
         CreateInteractor<PlayerInteractor>(interactorsMap);
+        CreateInteractor<UIControllerInteractor>(interactorsMap);
 
         return interactorsMap;
     }
