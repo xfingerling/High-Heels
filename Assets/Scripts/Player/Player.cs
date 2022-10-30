@@ -19,6 +19,7 @@ public class Player : MonoBehaviour, IPlayer
 
     private float _gravity = 14f;
     private float _terminalVelocity = 20f;
+    private Wall _prevWall;
 
     private IState _currentState => PlayerState.currentState;
     private int _heelCount;
@@ -39,6 +40,9 @@ public class Player : MonoBehaviour, IPlayer
     private void Update()
     {
         UpdateMotor();
+
+        if (_prevWall != null && transform.position.z > _prevWall.EndPoint)
+            _prevWall = null;
     }
 
     public void ApplyGravity()
@@ -70,9 +74,22 @@ public class Player : MonoBehaviour, IPlayer
 
         if (wall != null)
         {
-            DicrementHeels(wall.Height);
+            if (_prevWall == null)
+            {
+                _prevWall = wall;
+                CheckDeath(wall.Height);
+                DicrementHeels(wall.Height);
+            }
+            else
+            {
+                if (_prevWall.Height < wall.Height)
+                {
+                    CheckDeath(wall.Height - _prevWall.Height);
+                    DicrementHeels(wall.Height - _prevWall.Height);
+                    _prevWall = wall;
+                }
+            }
         }
-
 
         if (heels != null)
             IncrementHeels();
@@ -132,11 +149,7 @@ public class Player : MonoBehaviour, IPlayer
     private void DicrementHeels(int value)
     {
         if (value > _heelCount)
-        {
-            PlayerState.SetState<PlayerStateDeath>();
-            return;
-        }
-
+            value = _heelCount;
 
         var leftActive = _poolLeftHeels.FindAll(heel => heel.activeInHierarchy);
         var rightActive = _poolRightHeels.FindAll(heel => heel.activeInHierarchy);
@@ -152,5 +165,13 @@ public class Player : MonoBehaviour, IPlayer
         _groundCheckerPivot.transform.localPosition = new Vector3(0, _groundCheckerPivot.transform.localPosition.y + value, 0);
 
         _heelCount -= value;
+    }
+
+    private void CheckDeath(int value)
+    {
+        Debug.Log("Value: " + value);
+        Debug.Log("Heels: " + _heelCount);
+        if (value > _heelCount)
+            PlayerState.SetState<PlayerStateDeath>();
     }
 }
