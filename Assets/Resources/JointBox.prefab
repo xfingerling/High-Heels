@@ -213,4 +213,4 @@ MonoBehaviour:
   _scaleDown: {x: 0, y: 0, z: 0}
   _scaleUp: {x: 0, y: 0, z: 0}
   _scaleKoefficient: 0
-  _rotationKoefficient: 15
+  _rotationKoefficient: 10

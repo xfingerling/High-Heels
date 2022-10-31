@@ -14,11 +14,8 @@ public class Player : MonoBehaviour, IPlayer
     public PlayerState PlayerState;
     public Animator Animator { get; set; }
     public Vector3 moveVector { get; set; }
-    public float verticalVelocity { get; set; }
     public bool isGrounded { get; set; }
 
-    private float _gravity = 14f;
-    private float _terminalVelocity = 20f;
     private Wall _prevWall;
 
     private IState _currentState => PlayerState.currentState;
@@ -41,8 +38,7 @@ public class Player : MonoBehaviour, IPlayer
     {
         UpdateMotor();
 
-        if (_prevWall != null && transform.position.z > _prevWall.EndPoint)
-            _prevWall = null;
+        TryResetPrevWall();
     }
 
     private void OnTriggerEnter(Collider other)
@@ -88,12 +84,10 @@ public class Player : MonoBehaviour, IPlayer
         _heelCount = 0;
     }
 
-    public void ApplyGravity()
+    private void TryResetPrevWall()
     {
-        verticalVelocity -= _gravity * Time.deltaTime;
-
-        if (verticalVelocity < -_terminalVelocity)
-            verticalVelocity = -_terminalVelocity;
+        if (_prevWall != null && transform.position.z > _prevWall.EndPoint)
+            _prevWall = null;
     }
 
     private void UpdateMotor()
@@ -105,8 +99,6 @@ public class Player : MonoBehaviour, IPlayer
             _currentState.Update();
             _currentState.Transition();
         }
-
-        transform.Translate(moveVector * Time.deltaTime);
     }
 
     private bool IsOnGround()

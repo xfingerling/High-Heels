@@ -7,6 +7,8 @@ public class PlayerStateInit : PlayerStateBase, IState
         player.moveVector = Vector3.zero;
         player.ResetPlayer();
         player.Animator.SetTrigger("Idle");
+
+        UIcontroller.ShowPopup<UIMainMenu>();
     }
 
     public void Destruct()
@@ -16,8 +18,11 @@ public class PlayerStateInit : PlayerStateBase, IState
 
     public void Transition()
     {
-        if (Input.GetMouseButtonDown(1))
-            player.PlayerState.SetState<PlayerStateRunning>();
+        if (TouchUtility.TouchCount > 0)
+        {
+            if (TouchUtility.GetTouch(0).phase == TouchPhase.Began)
+                player.PlayerState.SetState<PlayerStateRunning>();
+        }
     }
 
     public void Update()

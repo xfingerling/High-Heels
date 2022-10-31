@@ -44,7 +44,6 @@ public class UIControllerInteractor : Interactor
     {
         foreach (var view in _popupViews)
             view.Hide();
-
     }
 
     private void InitPopupViews()

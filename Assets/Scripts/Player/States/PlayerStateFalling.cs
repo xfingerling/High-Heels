@@ -1,5 +1,3 @@
-using UnityEngine;
-
 public class PlayerStateFalling : PlayerStateBase, IState
 {
     public void Construct()
@@ -20,13 +18,7 @@ public class PlayerStateFalling : PlayerStateBase, IState
 
     public void Update()
     {
-        player.ApplyGravity();
-
-        Vector3 m = Vector3.zero;
-
-        m.z = player.moveVector.z;
-        m.y = player.verticalVelocity;
-
-        player.moveVector = m;
+        playerMove.Move();
+        playerMove.ApplyGravity();
     }
 }

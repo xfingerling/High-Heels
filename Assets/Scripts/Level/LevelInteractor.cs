@@ -19,8 +19,8 @@ public class LevelInteractor : Interactor
     {
         base.Initialize();
 
-        _levelsPrefab = Resources.LoadAll<GameObject>("Levels");
-        Debug.Log(CurrentLevelIndex);
+        _levelsPrefab = Resources.Load<LevelsData>("Data/LevelData").LevelPrefab;
+
         _goCurrentLevel = Object.Instantiate(_levelsPrefab[CurrentLevelIndex]);
     }
 

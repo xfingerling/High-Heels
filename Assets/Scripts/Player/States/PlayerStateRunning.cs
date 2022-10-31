@@ -1,12 +1,7 @@
 public class PlayerStateRunning : PlayerStateBase, IState
 {
-    private PlayerMove _playerMove;
-
     public void Construct()
     {
-        if (_playerMove == null)
-            _playerMove = player.GetComponent<PlayerMove>();
-
         player.Animator.SetTrigger("Running");
     }
 
@@ -23,7 +18,6 @@ public class PlayerStateRunning : PlayerStateBase, IState
 
     public void Update()
     {
-        _playerMove.Move();
-        _playerMove.LimitMovementX();
+        playerMove.Move();
     }
 }

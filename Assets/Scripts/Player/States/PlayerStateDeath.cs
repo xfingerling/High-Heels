@@ -5,7 +5,7 @@ public class PlayerStateDeath : PlayerStateBase, IState
     public void Construct()
     {
         player.Animator.SetTrigger("Death");
-        player.moveVector = Vector3.zero;
+
         player.transform.position = new Vector3(player.transform.position.x, 0, player.transform.position.z);
     }
 
