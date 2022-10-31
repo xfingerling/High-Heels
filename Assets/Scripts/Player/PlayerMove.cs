@@ -30,8 +30,8 @@ public class PlayerMove : MonoBehaviour
 
         _moveVector.x = GetLimitXPosition(_swipeDirection.x);
 
-        transform.Translate(Vector3.forward * _runningSpeed * Time.deltaTime);
         transform.DOMoveX(_moveVector.x, 0.5f);
+        transform.Translate(Vector3.forward * _runningSpeed * Time.deltaTime);
     }
 
     public void ApplyGravity()

@@ -1,15 +1,14 @@
-using UnityEngine;
-
 public class PLayerStateFinish : PlayerStateBase, IState
 {
     public void Construct()
     {
         player.Animator.SetTrigger("Dancing");
+        UIcontroller.ShowPopup<UIFinishPopup>();
     }
 
     public void Destruct()
     {
-
+        UIcontroller.GetView<UIFinishPopup>().Hide();
     }
 
     public void Transition()
@@ -19,10 +18,5 @@ public class PLayerStateFinish : PlayerStateBase, IState
 
     public void Update()
     {
-        if (Input.GetMouseButton(0))
-        {
-            levelInteractor.NextLevel();
-            player.PlayerState.SetState<PlayerStateInit>();
-        }
     }
 }

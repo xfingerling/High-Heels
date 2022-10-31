@@ -382,6 +382,24 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 3434394740847868611}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &2551291404952913810 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: f289e1e30c1f9944b903ae197d7d035c,
+    type: 3}
+  m_PrefabInstance: {fileID: 3434394740847868611}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &3503908415582984463
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2551291404952913810}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1a71a30c1bbd9dd4aa1b0b4ff00a34a5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &2871144514529418431 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 608321761475470972, guid: f289e1e30c1f9944b903ae197d7d035c,
@@ -415,17 +433,17 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 2e847294a77e76947adaee78bab81bb8,
         type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.04
+      value: 0.05
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 2e847294a77e76947adaee78bab81bb8,
         type: 3}
       propertyPath: m_LocalScale.y
-      value: 0.04
+      value: 0.05
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 2e847294a77e76947adaee78bab81bb8,
         type: 3}
       propertyPath: m_LocalScale.z
-      value: 0.04
+      value: 0.05
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 2e847294a77e76947adaee78bab81bb8,
         type: 3}
@@ -435,12 +453,12 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 2e847294a77e76947adaee78bab81bb8,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 2e847294a77e76947adaee78bab81bb8,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: -0.76
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 2e847294a77e76947adaee78bab81bb8,
         type: 3}
@@ -510,32 +528,32 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 2e847294a77e76947adaee78bab81bb8,
         type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.04
+      value: 0.05
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 2e847294a77e76947adaee78bab81bb8,
         type: 3}
       propertyPath: m_LocalScale.y
-      value: 0.04
+      value: 0.05
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 2e847294a77e76947adaee78bab81bb8,
         type: 3}
       propertyPath: m_LocalScale.z
-      value: 0.04
+      value: 0.05
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 2e847294a77e76947adaee78bab81bb8,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 2e847294a77e76947adaee78bab81bb8,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 2e847294a77e76947adaee78bab81bb8,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: -1.26
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 2e847294a77e76947adaee78bab81bb8,
         type: 3}
@@ -581,6 +599,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Women_shoe_right
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 2e847294a77e76947adaee78bab81bb8,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2e847294a77e76947adaee78bab81bb8, type: 3}

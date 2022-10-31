@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 65667442a9c864d478e3eecc9989e296
+guid: f176764dfd9496c4c8898448c379d6c4
 TrueTypeFontImporter:
   externalObjects: {}
   serializedVersion: 4
@@ -9,7 +9,7 @@ TrueTypeFontImporter:
   characterPadding: 1
   includeFontData: 1
   fontNames:
-  - WEROTH
+  - Roboto Condensed
   fallbackFontReferences: []
   customCharacters: 
   fontRenderingMode: 0

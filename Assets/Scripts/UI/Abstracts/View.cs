@@ -3,10 +3,12 @@ using UnityEngine;
 public abstract class View : MonoBehaviour
 {
     protected Player player;
+    protected LevelInteractor levelInteractor;
 
     private void Start()
     {
         var playerInteractor = Game.GetInteractor<PlayerInteractor>();
+        levelInteractor = Game.GetInteractor<LevelInteractor>();
 
         player = playerInteractor.Player;
     }

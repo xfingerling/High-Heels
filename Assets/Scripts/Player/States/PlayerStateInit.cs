@@ -4,7 +4,6 @@ public class PlayerStateInit : PlayerStateBase, IState
 {
     public void Construct()
     {
-        player.moveVector = Vector3.zero;
         player.ResetPlayer();
         player.Animator.SetTrigger("Idle");
 
@@ -13,7 +12,7 @@ public class PlayerStateInit : PlayerStateBase, IState
 
     public void Destruct()
     {
-
+        UIcontroller.GetView<UIMainMenu>().Hide();
     }
 
     public void Transition()

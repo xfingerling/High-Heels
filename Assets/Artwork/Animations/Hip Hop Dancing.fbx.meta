@@ -1,11 +1,11 @@
 fileFormatVersion: 2
-guid: 2a404992e2214e048b335b5b9f37f234
+guid: 024a5e1192f82f94699c43e2772caa3f
 ModelImporter:
   serializedVersion: 21300
   internalIDToNameTable:
   - first:
       74: -203655887218126122
-    second: Macarena Dance
+    second: dancing
   externalObjects: {}
   materials:
     materialImportMode: 2
@@ -36,11 +36,11 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: Macarena Dance
+      name: dancing
       takeName: mixamo.com
       internalID: 0
       firstFrame: 0
-      lastFrame: 247
+      lastFrame: 142
       wrapMode: 0
       orientationOffsetY: 0
       level: 0

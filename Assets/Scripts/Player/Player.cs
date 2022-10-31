@@ -6,22 +6,18 @@ public class Player : MonoBehaviour, IPlayer
     [SerializeField] private Transform _rightHeelContainer;
     [SerializeField] private Transform _leftHeelContainer;
     [SerializeField] private SphereCollider _groundCheckerPivot;
-    [SerializeField] private float _checkGroundRadius = 0.1f;
+    [SerializeField] private float _checkGroundRadius = 0.3f;
     [SerializeField] private LayerMask _groundMask;
 
-
-    public bool isInWall { get; set; }
-    public PlayerState PlayerState;
-    public Animator Animator { get; set; }
-    public Vector3 moveVector { get; set; }
-    public bool isGrounded { get; set; }
-
-    private Wall _prevWall;
+    public PlayerState PlayerState { get; private set; }
+    public Animator Animator { get; private set; }
+    public bool isGrounded { get; private set; }
 
     private IState _currentState => PlayerState.currentState;
     private int _heelCount;
     private List<GameObject> _poolLeftHeels;
     private List<GameObject> _poolRightHeels;
+    private Wall _prevWall;
 
     private void Awake()
     {
@@ -46,7 +42,7 @@ public class Player : MonoBehaviour, IPlayer
         Wall wall = other.GetComponent<Wall>();
         FinishWall finishWall = other.GetComponent<FinishWall>();
         Heels heels = other.GetComponent<Heels>();
-
+        Debug.Log(other.name);
         if (wall != null)
         {
             if (_prevWall == null)
