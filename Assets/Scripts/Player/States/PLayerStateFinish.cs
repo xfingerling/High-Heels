@@ -18,5 +18,6 @@ public class PLayerStateFinish : PlayerStateBase, IState
 
     public void Update()
     {
+        player.ResetModel();
     }
 }

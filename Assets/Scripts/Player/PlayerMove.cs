@@ -6,18 +6,20 @@ public class PlayerMove : MonoBehaviour
     [SerializeField] private float _runningSpeed;
     [SerializeField] private float _xSpeed;
     [SerializeField] private int _limitX = 2;
+    [SerializeField] private float _gravity = 9.81f;
 
+    private Player _player;
     private Camera _camera;
     private Vector3 _moveVector;
     private Vector3 _startTouchPos, _currentPosPlayer, _swipeDirection;
     private float _leftLimitPoint;
     private float _rightLimitPoint;
-    private float _gravity = 14f;
-    private float _terminalVelocity = 20f;
+    private float _limitVelocity = 20f;
     private float _verticalVelocity;
 
     private void Awake()
     {
+        _player = GetComponent<Player>();
         _camera = Camera.main;
 
         _leftLimitPoint = transform.position.x - _limitX;
@@ -34,12 +36,22 @@ public class PlayerMove : MonoBehaviour
         transform.Translate(Vector3.forward * _runningSpeed * Time.deltaTime);
     }
 
+    public void DoGravity()
+    {
+        _verticalVelocity += _gravity * Time.deltaTime;
+
+        transform.Translate(Vector3.up * _verticalVelocity * Time.deltaTime);
+    }
+
     public void ApplyGravity()
     {
+        if (_player.isGrounded)
+            _verticalVelocity = -2;
+
         _verticalVelocity -= _gravity * Time.deltaTime;
 
-        if (_verticalVelocity < -_terminalVelocity)
-            _verticalVelocity = -_terminalVelocity;
+        if (_verticalVelocity < -_limitVelocity)
+            _verticalVelocity = -_limitVelocity;
 
         transform.Translate(Vector3.down * -_verticalVelocity * Time.deltaTime);
     }
@@ -95,5 +107,15 @@ public class PlayerMove : MonoBehaviour
         {
             return x;
         }
+    }
+
+    private void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Color.red;
+        Vector3 from = transform.position;
+        Vector3 to = transform.position;
+        from.x = transform.position.x - _limitX;
+        to.x = transform.position.x + _limitX;
+        Gizmos.DrawLine(from, to);
     }
 }

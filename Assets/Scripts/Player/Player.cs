@@ -3,6 +3,7 @@ using UnityEngine;
 
 public class Player : MonoBehaviour, IPlayer
 {
+    [SerializeField] private GameObject _model;
     [SerializeField] private Transform _rightHeelContainer;
     [SerializeField] private Transform _leftHeelContainer;
     [SerializeField] private SphereCollider _groundCheckerPivot;
@@ -78,6 +79,11 @@ public class Player : MonoBehaviour, IPlayer
         transform.position = Vector3.zero;
         DicrementHeels(_heelCount);
         _heelCount = 0;
+    }
+
+    public void ResetModel()
+    {
+        _model.transform.localPosition = Vector3.zero;
     }
 
     private void TryResetPrevWall()
