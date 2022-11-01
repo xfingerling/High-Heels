@@ -24,7 +24,7 @@ public class JointBox : MonoBehaviour
 
         Vector3 reletivePosition = _playerTransform.InverseTransformPoint(transform.position);
 
-        _playerBody.localEulerAngles = new Vector3(reletivePosition.z, 0, -reletivePosition.x) * _rotationKoefficient;
+        _playerBody.localEulerAngles = new Vector3(0, 0, -reletivePosition.x) * _rotationKoefficient;
     }
 
     private void OnGameInitialized()

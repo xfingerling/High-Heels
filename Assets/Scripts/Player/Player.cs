@@ -42,7 +42,7 @@ public class Player : MonoBehaviour, IPlayer
         Wall wall = other.GetComponent<Wall>();
         FinishWall finishWall = other.GetComponent<FinishWall>();
         Heels heels = other.GetComponent<Heels>();
-        Debug.Log(other.name);
+
         if (wall != null)
         {
             if (_prevWall == null)
