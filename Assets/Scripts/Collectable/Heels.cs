@@ -1,12 +1,6 @@
-using UnityEngine;
-
-public class Heels : MonoBehaviour
+public class Heels : Collectable
 {
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.gameObject.CompareTag("Player"))
-        {
-            gameObject.SetActive(false);
-        }
-    }
+
+
+
 }
