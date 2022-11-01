@@ -3,6 +3,7 @@ using UnityEngine;
 public class LevelInteractor : Interactor
 {
     public int CurrentLevelIndex => _repository.CurrentLevelIndex;
+    public int TotalLevels => _levelsPrefab.Length;
 
     private LevelRepository _repository;
     private GameObject[] _levelsPrefab;

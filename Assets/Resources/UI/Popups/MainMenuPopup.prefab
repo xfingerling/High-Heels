@@ -341,6 +341,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _startText: {fileID: 1862948247373602772}
+  _currentLevelText: {fileID: 3680372798961994269}
 --- !u!1 &3533038623424691656
 GameObject:
   m_ObjectHideFlags: 0

@@ -2,7 +2,7 @@ public class PlayerStateFalling : PlayerStateBase, IState
 {
     public void Construct()
     {
-        player.Animator.SetTrigger("Falling");
+
     }
 
     public void Destruct()

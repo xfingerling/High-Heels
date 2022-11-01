@@ -4,7 +4,6 @@ public class LevelRepository : Repository
 {
     public int CurrentLevelIndex { get; set; }
 
-
     public override void OnCreate()
     {
         CurrentLevelIndex = SaveManager.Instance.saveData.CurrentLevelIndex;

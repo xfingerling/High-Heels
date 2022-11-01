@@ -20,6 +20,7 @@ public abstract class Collectable : MonoBehaviour
         if (other.gameObject.CompareTag("Player"))
         {
             gameObject.SetActive(false);
+            Handheld.Vibrate();
         }
     }
 }

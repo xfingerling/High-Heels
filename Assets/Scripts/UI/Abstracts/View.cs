@@ -5,7 +5,7 @@ public abstract class View : MonoBehaviour
     protected Player player;
     protected LevelInteractor levelInteractor;
 
-    private void Start()
+    private void Awake()
     {
         var playerInteractor = Game.GetInteractor<PlayerInteractor>();
         levelInteractor = Game.GetInteractor<LevelInteractor>();
