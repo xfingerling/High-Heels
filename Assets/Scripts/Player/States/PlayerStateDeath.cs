@@ -8,6 +8,7 @@ public class PlayerStateDeath : PlayerStateBase, IState
 
         player.transform.position = new Vector3(player.transform.position.x, 0, player.transform.position.z);
 
+        UIcontroller.HideHUD();
         UIcontroller.ShowPopup<UIDeathPopup>();
     }
 

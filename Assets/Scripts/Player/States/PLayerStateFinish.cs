@@ -8,6 +8,7 @@ public class PLayerStateFinish : PlayerStateBase, IState
 
     public void Destruct()
     {
+        UIcontroller.HideHUD();
         UIcontroller.GetView<UIFinishPopup>().Hide();
     }
 

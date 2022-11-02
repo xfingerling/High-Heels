@@ -5,6 +5,7 @@ public class UIControllerInteractor : Interactor
 {
     private UIInterface _UIInterface;
     private List<View> _popupViews = new List<View>();
+    private View _gameHUD;
 
     public override void Initialize()
     {
@@ -15,6 +16,7 @@ public class UIControllerInteractor : Interactor
         _UIInterface = goUIInterface.GetComponent<UIInterface>();
 
         InitPopupViews();
+        InitGameHUD();
     }
 
     public T GetView<T>() where T : View
@@ -46,9 +48,14 @@ public class UIControllerInteractor : Interactor
             view.Hide();
     }
 
+    public void ShowHUD() => _gameHUD.Show();
+
+    public void HideHUD() => _gameHUD.Hide();
+
+
     private void InitPopupViews()
     {
-        var viewPrefabs = Resources.LoadAll<View>("UI/Popups");
+        View[] viewPrefabs = Resources.LoadAll<View>("UI/Popups");
         Transform uiLayerPopupContainer = _UIInterface.PopupLayer.transform;
 
         foreach (var item in viewPrefabs)
@@ -59,5 +66,13 @@ public class UIControllerInteractor : Interactor
             go.Initialize();
             go.Hide();
         }
+    }
+
+    private void InitGameHUD()
+    {
+        View HUDPrefab = Resources.Load<View>("UI/HUDGame");
+        Transform uiLayerHUDContainer = _UIInterface.PopupLayer.transform;
+
+        _gameHUD = Object.Instantiate(HUDPrefab, uiLayerHUDContainer);
     }
 }

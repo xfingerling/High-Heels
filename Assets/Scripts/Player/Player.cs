@@ -1,8 +1,11 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class Player : MonoBehaviour, IPlayer
 {
+    public event Action OnPickedUpCoinEvent;
+
     [SerializeField] private GameObject _model;
     [SerializeField] private Transform _rightHeelContainer;
     [SerializeField] private Transform _leftHeelContainer;
@@ -84,6 +87,7 @@ public class Player : MonoBehaviour, IPlayer
         if (coin != null)
         {
             _playerInteractor.AddCoins();
+            OnPickedUpCoinEvent?.Invoke();
         }
     }
 

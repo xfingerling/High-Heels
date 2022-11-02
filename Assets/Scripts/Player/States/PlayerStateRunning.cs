@@ -3,6 +3,7 @@ public class PlayerStateRunning : PlayerStateBase, IState
     public void Construct()
     {
         player.Animator.SetTrigger("Running");
+        UIcontroller.ShowHUD();
     }
 
     public void Destruct()
