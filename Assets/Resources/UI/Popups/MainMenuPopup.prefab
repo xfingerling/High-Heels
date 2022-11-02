@@ -342,6 +342,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _startText: {fileID: 1862948247373602772}
   _currentLevelText: {fileID: 3680372798961994269}
+  _totalCoinsText: {fileID: 7366384505983564705}
 --- !u!1 &3533038623424691656
 GameObject:
   m_ObjectHideFlags: 0

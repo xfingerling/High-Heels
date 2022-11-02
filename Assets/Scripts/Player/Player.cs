@@ -12,16 +12,20 @@ public class Player : MonoBehaviour, IPlayer
 
     public PlayerState PlayerState { get; private set; }
     public Animator Animator { get; private set; }
-    public bool isGrounded { get; private set; }
+    public bool IsGrounded { get; private set; }
 
     private IState _currentState => PlayerState.currentState;
     private int _heelCount;
     private List<GameObject> _poolLeftHeels;
     private List<GameObject> _poolRightHeels;
     private Wall _prevWall;
+    private FinishWall _lastFinishWall;
+    private PlayerInteractor _playerInteractor;
 
     private void Awake()
     {
+        _playerInteractor = Game.GetInteractor<PlayerInteractor>();
+
         PlayerState = new PlayerState();
         Animator = GetComponentInChildren<Animator>();
     }
@@ -43,6 +47,7 @@ public class Player : MonoBehaviour, IPlayer
         Wall wall = other.GetComponent<Wall>();
         FinishWall finishWall = other.GetComponent<FinishWall>();
         Heels heels = other.GetComponent<Heels>();
+        Coin coin = other.GetComponent<Coin>();
 
         if (wall != null)
         {
@@ -70,7 +75,15 @@ public class Player : MonoBehaviour, IPlayer
         {
             DicrementHeels(finishWall.Height);
             if (_heelCount == 0)
+            {
+                _lastFinishWall = finishWall;
                 PlayerState.SetState<PLayerStateFinish>();
+            }
+        }
+
+        if (coin != null)
+        {
+            _playerInteractor.AddCoins();
         }
     }
 
@@ -86,6 +99,14 @@ public class Player : MonoBehaviour, IPlayer
         _model.transform.localPosition = Vector3.zero;
     }
 
+    public int GetFinishWallBonus()
+    {
+        if (_lastFinishWall != null)
+            return _lastFinishWall.Bonus;
+
+        return 1;
+    }
+
     private void TryResetPrevWall()
     {
         if (_prevWall != null && transform.position.z > _prevWall.EndPoint)
@@ -94,7 +115,7 @@ public class Player : MonoBehaviour, IPlayer
 
     private void UpdateMotor()
     {
-        isGrounded = IsOnGround();
+        IsGrounded = IsOnGround();
 
         if (_currentState != null)
         {

@@ -5,6 +5,7 @@ public class PlayerStateInit : PlayerStateBase, IState
     public void Construct()
     {
         player.ResetPlayer();
+        player.ResetModel();
         player.Animator.SetTrigger("Idle");
 
         UIcontroller.ShowPopup<UIMainMenu>();

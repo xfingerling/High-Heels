@@ -23,6 +23,7 @@ public class SceneConfigGame : SceneConfig
         var repositoriesMap = new Dictionary<Type, Repository>();
 
         CreateRepository<LevelRepository>(repositoriesMap);
+        CreateRepository<PlayerRepository>(repositoriesMap);
 
         return repositoriesMap;
     }

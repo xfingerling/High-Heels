@@ -4,10 +4,11 @@ public abstract class View : MonoBehaviour
 {
     protected Player player;
     protected LevelInteractor levelInteractor;
+    protected PlayerInteractor playerInteractor;
 
     private void Awake()
     {
-        var playerInteractor = Game.GetInteractor<PlayerInteractor>();
+        playerInteractor = Game.GetInteractor<PlayerInteractor>();
         levelInteractor = Game.GetInteractor<LevelInteractor>();
 
         player = playerInteractor.Player;

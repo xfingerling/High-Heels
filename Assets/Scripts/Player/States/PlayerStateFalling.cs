@@ -12,7 +12,7 @@ public class PlayerStateFalling : PlayerStateBase, IState
 
     public void Transition()
     {
-        if (player.isGrounded)
+        if (player.IsGrounded)
             player.PlayerState.SetState<PlayerStateRunning>();
     }
 

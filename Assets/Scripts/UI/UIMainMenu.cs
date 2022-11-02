@@ -6,25 +6,18 @@ public class UIMainMenu : View
 {
     [SerializeField] private TextMeshProUGUI _startText;
     [SerializeField] private TextMeshProUGUI _currentLevelText;
+    [SerializeField] private TextMeshProUGUI _totalCoinsText;
 
     private Tween _startTextScaleTween;
 
     public override void Initialize()
     {
         DoStartTextAnim();
-
-    }
-
-    public override void Update()
-    {
-        base.Update();
-
-        //if (levelInteractor != null)
-        //    _currentLevelText.text = $"{levelInteractor.CurrentLevelIndex + 1} / {levelInteractor.TotalLevels}";
     }
 
     private void OnEnable()
     {
+        _totalCoinsText.text = $"{playerInteractor.Coins}";
         _currentLevelText.text = $"{levelInteractor.CurrentLevelIndex + 1} / {levelInteractor.TotalLevels}";
     }
 

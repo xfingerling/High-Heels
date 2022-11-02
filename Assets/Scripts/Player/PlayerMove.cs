@@ -45,7 +45,7 @@ public class PlayerMove : MonoBehaviour
 
     public void ApplyGravity()
     {
-        if (_player.isGrounded)
+        if (_player.IsGrounded)
             _verticalVelocity = -2;
 
         _verticalVelocity -= _gravity * Time.deltaTime;
