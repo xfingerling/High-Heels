@@ -12,6 +12,7 @@ public class UIDeathPopup : View
 
     private void RestartLevel()
     {
+        levelInteractor.ResetLevel();
         player.PlayerState.SetState<PlayerStateInit>();
     }
 }

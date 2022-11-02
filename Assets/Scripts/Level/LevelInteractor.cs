@@ -8,6 +8,8 @@ public class LevelInteractor : Interactor
     private LevelRepository _repository;
     private GameObject[] _levelsPrefab;
     private GameObject _goCurrentLevel;
+    private Transform _levelsContainer;
+    private bool _isNewCycle;
 
     public override void OnCreate()
     {
@@ -19,18 +21,37 @@ public class LevelInteractor : Interactor
     public override void Initialize()
     {
         base.Initialize();
+        _levelsContainer = new GameObject("[LEVELS]").transform;
 
         _levelsPrefab = Resources.Load<LevelsData>("Data/LevelData").LevelPrefab;
 
-        _goCurrentLevel = Object.Instantiate(_levelsPrefab[CurrentLevelIndex]);
+        _goCurrentLevel = Object.Instantiate(_levelsPrefab[CurrentLevelIndex], _levelsContainer);
+    }
+
+    public void ResetLevel()
+    {
+        _goCurrentLevel.SetActive(false);
+
+        _goCurrentLevel = Object.Instantiate(_levelsPrefab[CurrentLevelIndex], _levelsContainer);
     }
 
     public void NextLevel()
     {
-        _repository.CurrentLevelIndex++;
+        //если закончатся уровни, то пойдут по новой
+        if (CurrentLevelIndex >= _levelsPrefab.Length - 1)
+        {
+            _repository.CurrentLevelIndex = 0;
+            _isNewCycle = true;
+        }
+
+
+        if (!_isNewCycle)
+            _repository.CurrentLevelIndex++;
+
         _repository.Save();
         _goCurrentLevel.SetActive(false);
 
-        _goCurrentLevel = Object.Instantiate(_levelsPrefab[CurrentLevelIndex]);
+        _goCurrentLevel = Object.Instantiate(_levelsPrefab[CurrentLevelIndex], _levelsContainer);
+        _isNewCycle = false;
     }
 }

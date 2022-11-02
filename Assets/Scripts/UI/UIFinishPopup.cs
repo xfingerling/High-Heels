@@ -6,6 +6,7 @@ public class UIFinishPopup : View
 {
     [SerializeField] private Button _getCoinButton;
     [SerializeField] private Button _getBonusCoinButton;
+    [SerializeField] private TextMeshProUGUI _finishBonusText;
     [SerializeField] private TextMeshProUGUI _coinWithoutBonus;
     [SerializeField] private TextMeshProUGUI _coinWithBonus;
 
@@ -17,7 +18,8 @@ public class UIFinishPopup : View
 
     private void OnEnable()
     {
-        _coinWithBonus.text = $"{playerInteractor.CoinsPerLevel * player.GetFinishWallBonus()}";
+        _finishBonusText.text = $"CLAIM {player.GetFinishWallBonus()}x";
+        _coinWithBonus.text = $"+{playerInteractor.CoinsPerLevel * player.GetFinishWallBonus()}";
         _coinWithoutBonus.text = playerInteractor.CoinsPerLevel.ToString();
     }
 

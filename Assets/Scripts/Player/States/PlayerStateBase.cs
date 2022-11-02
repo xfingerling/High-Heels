@@ -3,11 +3,12 @@ public abstract class PlayerStateBase
     protected Player player;
     protected PlayerMove playerMove;
     protected LevelInteractor levelInteractor;
+    protected PlayerInteractor playerInteractor;
     protected UIControllerInteractor UIcontroller;
 
     public PlayerStateBase()
     {
-        var playerInteractor = Game.GetInteractor<PlayerInteractor>();
+        playerInteractor = Game.GetInteractor<PlayerInteractor>();
         levelInteractor = Game.GetInteractor<LevelInteractor>();
         UIcontroller = Game.GetInteractor<UIControllerInteractor>();
 

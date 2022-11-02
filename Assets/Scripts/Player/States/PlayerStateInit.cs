@@ -4,9 +4,8 @@ public class PlayerStateInit : PlayerStateBase, IState
 {
     public void Construct()
     {
-        player.ResetPlayer();
-        player.ResetModel();
         player.Animator.SetTrigger("Idle");
+        player.ResetPlayer();
 
         UIcontroller.ShowPopup<UIMainMenu>();
     }
@@ -27,6 +26,7 @@ public class PlayerStateInit : PlayerStateBase, IState
 
     public void Update()
     {
-
+        //костыль из-за кривых(как я понял) анимаций
+        player.ResetModel();
     }
 }

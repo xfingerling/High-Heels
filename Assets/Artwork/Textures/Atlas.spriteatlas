@@ -6,7 +6,7 @@ SpriteAtlas:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: FinishAtlas
+  m_Name: Atlas
   m_EditorData:
     serializedVersion: 2
     textureSettings:
@@ -38,24 +38,30 @@ SpriteAtlas:
     - {fileID: 21300000, guid: 3c039be4a88fc3f428dd28f9e7bc3bbf, type: 3}
     - {fileID: 21300000, guid: 689dc1c6abb936340b2f3db529b3ca9f, type: 3}
     - {fileID: 21300000, guid: d466a38ad343f844884ab73e018a497f, type: 3}
+    - {fileID: 21300000, guid: 5e635581fc10f9e4c81faf8bc93b252a, type: 3}
+    - {fileID: 21300000, guid: 2c451b6ef87c5a440b069c516158ce6f, type: 3}
     bindAsDefault: 1
     isAtlasV2: 0
     cachedData: {fileID: 0}
   m_MasterAtlas: {fileID: 0}
   m_PackedSprites:
   - {fileID: 21300000, guid: c8c3b1102fb60bf429d8382fa8014051, type: 3}
+  - {fileID: 21300000, guid: 5e635581fc10f9e4c81faf8bc93b252a, type: 3}
   - {fileID: 21300000, guid: 0d244f3249c3b0b408528e945ad181ed, type: 3}
   - {fileID: 21300000, guid: 3c039be4a88fc3f428dd28f9e7bc3bbf, type: 3}
   - {fileID: 21300000, guid: 689dc1c6abb936340b2f3db529b3ca9f, type: 3}
   - {fileID: 21300000, guid: cbe370c948809494fbbb1e79ea652315, type: 3}
   - {fileID: 21300000, guid: d466a38ad343f844884ab73e018a497f, type: 3}
+  - {fileID: 21300000, guid: 2c451b6ef87c5a440b069c516158ce6f, type: 3}
   m_PackedSpriteNamesToIndex:
   - x3
+  - ad
   - x1
   - x4
   - x5
   - x2
   - x6
+  - free-icon-pointer-1437814
   m_RenderDataMap: {}
-  m_Tag: Finish
+  m_Tag: FinishAtlas
   m_IsVariant: 0

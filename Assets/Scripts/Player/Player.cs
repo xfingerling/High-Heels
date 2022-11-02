@@ -12,10 +12,13 @@ public class Player : MonoBehaviour, IPlayer
     [SerializeField] private SphereCollider _groundCheckerPivot;
     [SerializeField] private float _checkGroundRadius = 0.3f;
     [SerializeField] private LayerMask _groundMask;
+    [SerializeField] private ParticleSystem _conffetiParticle;
 
     public PlayerState PlayerState { get; private set; }
     public Animator Animator { get; private set; }
     public bool IsGrounded { get; private set; }
+    public ParticleSystem ConffetiParticle => _conffetiParticle;
+    public PlayerAudioSources AudioSources { get; private set; }
 
     private IState _currentState => PlayerState.currentState;
     private int _heelCount;
@@ -31,6 +34,7 @@ public class Player : MonoBehaviour, IPlayer
 
         PlayerState = new PlayerState();
         Animator = GetComponentInChildren<Animator>();
+        AudioSources = GetComponentInChildren<PlayerAudioSources>();
     }
 
     private void Start()
@@ -59,6 +63,7 @@ public class Player : MonoBehaviour, IPlayer
                 _prevWall = wall;
                 CheckDeath(wall.Height);
                 DicrementHeels(wall.Height);
+                AudioSources.Drop.Play();
             }
             else
             {
@@ -67,16 +72,23 @@ public class Player : MonoBehaviour, IPlayer
                     CheckDeath(wall.Height - _prevWall.Height);
                     DicrementHeels(wall.Height - _prevWall.Height);
                     _prevWall = wall;
+                    AudioSources.Drop.Play();
                 }
             }
         }
 
         if (heels != null)
+        {
             IncrementHeels();
+            AudioSources.Pickup.Play();
+        }
+
 
         if (finishWall != null)
         {
             DicrementHeels(finishWall.Height);
+            AudioSources.Drop.Play();
+
             if (_heelCount == 0)
             {
                 _lastFinishWall = finishWall;
@@ -87,6 +99,8 @@ public class Player : MonoBehaviour, IPlayer
         if (coin != null)
         {
             _playerInteractor.AddCoins();
+            AudioSources.Coin.Play();
+
             OnPickedUpCoinEvent?.Invoke();
         }
     }
@@ -96,6 +110,7 @@ public class Player : MonoBehaviour, IPlayer
         transform.position = Vector3.zero;
         DicrementHeels(_heelCount);
         _heelCount = 0;
+        _prevWall = null;
     }
 
     public void ResetModel()

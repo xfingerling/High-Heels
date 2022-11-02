@@ -71,8 +71,10 @@ public class UIControllerInteractor : Interactor
     private void InitGameHUD()
     {
         View HUDPrefab = Resources.Load<View>("UI/HUDGame");
-        Transform uiLayerHUDContainer = _UIInterface.PopupLayer.transform;
+        Transform uiLayerHUDContainer = _UIInterface.HudLayer.transform;
 
         _gameHUD = Object.Instantiate(HUDPrefab, uiLayerHUDContainer);
+        _gameHUD.Initialize();
+        _gameHUD.Hide();
     }
 }

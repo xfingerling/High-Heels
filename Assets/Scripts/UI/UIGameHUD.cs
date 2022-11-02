@@ -19,13 +19,13 @@ public class UIGameHUD : View
 
     private void OnDisable()
     {
+        _coinPreLevelText.text = "0";
         player.OnPickedUpCoinEvent -= OnPickedUpCoin;
     }
 
 
     private void OnPickedUpCoin()
     {
-        Debug.Log(1);
         _coinPreLevelText.text = $"{playerInteractor.CoinsPerLevel}";
     }
 }
