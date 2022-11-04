@@ -1,5 +1,3 @@
-using UnityEngine;
-
 public class LevelRepository : Repository
 {
     public int CurrentLevelIndex { get; set; }
@@ -7,7 +5,6 @@ public class LevelRepository : Repository
     public override void OnCreate()
     {
         CurrentLevelIndex = SaveManager.Instance.saveData.CurrentLevelIndex;
-        Debug.Log(CurrentLevelIndex + "Load");
     }
 
     public override void Initialize()
