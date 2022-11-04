@@ -59,6 +59,8 @@ public class Player : MonoBehaviour, IPlayer
         Heels heels = other.GetComponent<Heels>();
         Coin coin = other.GetComponent<Coin>();
 
+        Debug.Log(other.name);
+
         if (wall != null)
         {
             if (_prevWall == null)
