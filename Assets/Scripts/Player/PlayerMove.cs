@@ -36,12 +36,6 @@ public class PlayerMove : MonoBehaviour
         transform.Translate(Vector3.forward * _runningSpeed * Time.deltaTime);
     }
 
-    public void DoGravity()
-    {
-        _verticalVelocity += _gravity * Time.deltaTime;
-
-        transform.Translate(Vector3.up * _verticalVelocity * Time.deltaTime);
-    }
 
     public void ApplyGravity()
     {
@@ -54,6 +48,11 @@ public class PlayerMove : MonoBehaviour
             _verticalVelocity = -_limitVelocity;
 
         transform.Translate(Vector3.down * -_verticalVelocity * Time.deltaTime);
+    }
+
+    public void ResetStartTouch()
+    {
+        _startTouchPos = Vector3.zero;
     }
 
     private void UpdateSwipeDirection()
@@ -107,15 +106,5 @@ public class PlayerMove : MonoBehaviour
         {
             return x;
         }
-    }
-
-    private void OnDrawGizmosSelected()
-    {
-        Gizmos.color = Color.red;
-        Vector3 from = transform.position;
-        Vector3 to = transform.position;
-        from.x = transform.position.x - _limitX;
-        to.x = transform.position.x + _limitX;
-        Gizmos.DrawLine(from, to);
     }
 }

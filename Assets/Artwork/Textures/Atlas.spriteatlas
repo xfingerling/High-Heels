@@ -63,5 +63,5 @@ SpriteAtlas:
   - x6
   - free-icon-pointer-1437814
   m_RenderDataMap: {}
-  m_Tag: FinishAtlas
+  m_Tag: Atlas
   m_IsVariant: 0

@@ -7,6 +7,7 @@ public class PlayerStateDeath : PlayerStateBase, IState
         player.Animator.SetTrigger("Death");
         player.transform.DOMoveY(0, 0.5f);
         player.AudioSources.Death.Play();
+        playerMove.ResetStartTouch();
 
         UIcontroller.HideHUD();
         UIcontroller.ShowPopup<UIDeathPopup>();

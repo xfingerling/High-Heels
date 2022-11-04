@@ -24,6 +24,7 @@ public class Player : MonoBehaviour, IPlayer
     private int _heelCount;
     private List<GameObject> _poolLeftHeels;
     private List<GameObject> _poolRightHeels;
+    private List<Heels> _pickedHeels;
     private Wall _prevWall;
     private FinishWall _lastFinishWall;
     private PlayerInteractor _playerInteractor;
@@ -35,6 +36,8 @@ public class Player : MonoBehaviour, IPlayer
         PlayerState = new PlayerState();
         Animator = GetComponentInChildren<Animator>();
         AudioSources = GetComponentInChildren<PlayerAudioSources>();
+
+        _pickedHeels = new List<Heels>();
     }
 
     private void Start()
@@ -61,33 +64,24 @@ public class Player : MonoBehaviour, IPlayer
             if (_prevWall == null)
             {
                 _prevWall = wall;
-                CheckDeath(wall.Height);
-                DicrementHeels(wall.Height);
-                AudioSources.Drop.Play();
+                LoseHeels(wall.Height);
             }
             else
             {
                 if (_prevWall.Height < wall.Height)
                 {
-                    CheckDeath(wall.Height - _prevWall.Height);
-                    DicrementHeels(wall.Height - _prevWall.Height);
+                    LoseHeels(wall.Height - _prevWall.Height);
                     _prevWall = wall;
-                    AudioSources.Drop.Play();
                 }
             }
         }
 
         if (heels != null)
-        {
-            IncrementHeels();
-            AudioSources.Pickup.Play();
-        }
-
+            PickupHeels(heels);
 
         if (finishWall != null)
         {
-            DicrementHeels(finishWall.Height);
-            AudioSources.Drop.Play();
+            LoseHeels(finishWall.Height);
 
             if (_heelCount == 0)
             {
@@ -97,12 +91,7 @@ public class Player : MonoBehaviour, IPlayer
         }
 
         if (coin != null)
-        {
-            _playerInteractor.AddCoins();
-            AudioSources.Coin.Play();
-
-            OnPickedUpCoinEvent?.Invoke();
-        }
+            PickupCoin();
     }
 
     public void ResetPlayer()
@@ -111,6 +100,7 @@ public class Player : MonoBehaviour, IPlayer
         DicrementHeels(_heelCount);
         _heelCount = 0;
         _prevWall = null;
+        _pickedHeels.Clear();
     }
 
     public void ResetModel()
@@ -125,6 +115,8 @@ public class Player : MonoBehaviour, IPlayer
 
         return 1;
     }
+
+    #region PRIVATE
 
     private void TryResetPrevWall()
     {
@@ -213,4 +205,37 @@ public class Player : MonoBehaviour, IPlayer
         if (value > _heelCount)
             PlayerState.SetState<PlayerStateDeath>();
     }
+
+    private void PickupCoin()
+    {
+        _playerInteractor.AddCoins();
+        AudioSources.Coin.Play();
+
+        OnPickedUpCoinEvent?.Invoke();
+    }
+
+    private void PickupHeels(Heels heels)
+    {
+        _pickedHeels.Add(heels);
+        IncrementHeels();
+
+        AudioSources.Pickup.Play();
+    }
+
+    private void LoseHeels(int value)
+    {
+        CheckDeath(value);
+        DicrementHeels(value);
+
+        if (_pickedHeels.Count != 0)
+        {
+            Heels heels = _pickedHeels[_pickedHeels.Count - 1];
+
+            heels.transform.position = new Vector3(transform.position.x, 0, transform.position.z - 1);
+            heels.gameObject.SetActive(true);
+        }
+
+        AudioSources.Drop.Play();
+    }
+    #endregion
 }

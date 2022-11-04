@@ -1,5 +1,3 @@
-using UnityEngine;
-
 public class PlayerStateInit : PlayerStateBase, IState
 {
     public void Construct()
@@ -19,8 +17,7 @@ public class PlayerStateInit : PlayerStateBase, IState
     {
         if (TouchUtility.TouchCount > 0)
         {
-            if (TouchUtility.GetTouch(0).phase == TouchPhase.Began)
-                player.PlayerState.SetState<PlayerStateRunning>();
+            player.PlayerState.SetState<PlayerStateRunning>();
         }
     }
 
