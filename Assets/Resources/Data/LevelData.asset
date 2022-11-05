@@ -13,5 +13,6 @@ MonoBehaviour:
   m_Name: LevelData
   m_EditorClassIdentifier: 
   _levelsPrefab:
-  - {fileID: 5469407302037134829, guid: 2a48f72074974d442b8ec98f8f4b8829, type: 3}
+  - {fileID: 5469407302037134829, guid: bba9b107dbaedac4d857877d0feed5b5, type: 3}
+  - {fileID: 5469407302037134829, guid: 7888dbe56f092fe43807001b5c0b74a7, type: 3}
   - {fileID: 5469407302037134829, guid: 2a48f72074974d442b8ec98f8f4b8829, type: 3}

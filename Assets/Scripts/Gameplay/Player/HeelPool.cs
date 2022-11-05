@@ -65,7 +65,6 @@ public class HeelPool
     public void DicrementHeels(int value)
     {
         int heelCount = GetAmountActiveHeels();
-        value = value > heelCount ? heelCount : value;
 
         var leftActive = _leftHeelsPool.FindAll(heel => heel.activeInHierarchy);
         var rightActive = _rightHeelsPool.FindAll(heel => heel.activeInHierarchy);

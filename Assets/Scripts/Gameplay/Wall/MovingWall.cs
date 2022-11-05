@@ -14,11 +14,11 @@ public class MovingWall : MonoBehaviour
     private void Awake()
     {
         _from = transform.position;
-        _to = new Vector3(_offsetX + _from.x, _from.y, _from.z);
+        _to = new Vector3(_offsetX - 1 + _from.x, _from.y, _from.z);
         _speed /= 2;
 
         _marker.transform.position = GetMidpointVector(_from, _to);
-        _marker.transform.localScale = new Vector3(_offsetX + _wallSize, _marker.transform.localScale.y, _marker.transform.localScale.z);
+        _marker.transform.localScale = new Vector3(_offsetX, _marker.transform.localScale.y, _marker.transform.localScale.z);
     }
 
     private void Start()

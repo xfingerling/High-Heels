@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 5094181838485554419}
   m_Layer: 8
   m_Name: Wall_1
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

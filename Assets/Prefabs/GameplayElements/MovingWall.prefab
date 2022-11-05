@@ -224,7 +224,7 @@ GameObject:
   - component: {fileID: 6298328364463835492}
   m_Layer: 0
   m_Name: MovingWall
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -258,7 +258,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5c67e39518b04f48ac9601baf0f1793, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _height: 1
   _offsetX: 1
   _marker: {fileID: 1175070265}
   _model: {fileID: 1501987980}
+  _speed: 0

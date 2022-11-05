@@ -104,7 +104,6 @@ public class Player : MonoBehaviour
             PlayerState.SetState<PlayerStateRunning>();
             transform.DORotate(Vector3.zero, 0.5f);
         }
-
     }
 
     public void ResetPlayer()
@@ -184,6 +183,9 @@ public class Player : MonoBehaviour
     private void LoseHeels(int value)
     {
         CheckDeath(value);
+
+        value = value > _heelCount ? _heelCount : value;
+
         _heelPool.DicrementHeels(value);
 
         if (_pickedHeels.Count != 0)
