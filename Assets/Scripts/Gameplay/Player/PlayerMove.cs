@@ -9,6 +9,7 @@ public class PlayerMove : MonoBehaviour
     [SerializeField] private float _gravity = 9.81f;
     [SerializeField] private float _tiltSpeed = 10;
     [SerializeField] private float _balanceForce = 15;
+    [SerializeField] private float _tiltLimit = 0.4f;
 
     private Player _player;
     private Camera _camera;
@@ -42,6 +43,10 @@ public class PlayerMove : MonoBehaviour
         UpdateSwipeDirection();
 
         float randomSideTilt = transform.rotation.z < 0 ? -1 : 1;
+
+        if (Mathf.Abs(transform.rotation.z) > _tiltLimit)
+            transform.DOMoveX(1 * -randomSideTilt, 0.5f);
+
 
         if (TouchUtility.TouchCount > 0)
         {

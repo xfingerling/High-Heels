@@ -2,7 +2,7 @@ public class PlayerStateFalling : PlayerStateBase, IState
 {
     public void Construct()
     {
-
+        player.Animator.SetTrigger("Falling");
     }
 
     public void Destruct()
@@ -14,6 +14,9 @@ public class PlayerStateFalling : PlayerStateBase, IState
     {
         if (player.IsGrounded)
             player.PlayerState.SetState<PlayerStateRunning>();
+
+        if (player.transform.position.y < -30)
+            player.PlayerState.SetState<PlayerStateDeath>();
     }
 
     public void Update()

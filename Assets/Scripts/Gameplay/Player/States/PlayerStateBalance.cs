@@ -14,7 +14,8 @@ public class PlayerStateBalance : PlayerStateBase, IState
 
     public void Transition()
     {
-
+        if (!player.IsGrounded)
+            player.PlayerState.SetState<PlayerStateFalling>();
     }
 
     public void Update()
