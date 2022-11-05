@@ -1,5 +1,11 @@
 public class PlayerState : StateBase
 {
+    protected Player player;
+    protected PlayerMove playerMove;
+    protected LevelInteractor levelInteractor;
+    protected PlayerInteractor playerInteractor;
+    protected UIControllerInteractor UIcontroller;
+
     public PlayerState()
     {
         Game.OnGameInitializedEvent += OnGameInitialized;
@@ -22,6 +28,7 @@ public class PlayerState : StateBase
         CreateState<PlayerStateFalling>();
         CreateState<PLayerStateFinish>();
         CreateState<PlayerStateDeath>();
+        CreateState<PlayerStateBalance>();
     }
 
     private void SetDefaultState()

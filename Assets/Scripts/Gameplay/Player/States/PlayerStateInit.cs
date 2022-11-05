@@ -1,3 +1,5 @@
+using UnityEngine;
+
 public class PlayerStateInit : PlayerStateBase, IState
 {
     public void Construct()
@@ -15,9 +17,11 @@ public class PlayerStateInit : PlayerStateBase, IState
 
     public void Transition()
     {
+
         if (TouchUtility.TouchCount > 0)
         {
-            player.PlayerState.SetState<PlayerStateRunning>();
+            if (TouchUtility.GetTouch(0).phase == TouchPhase.Moved)
+                player.PlayerState.SetState<PlayerStateRunning>();
         }
     }
 

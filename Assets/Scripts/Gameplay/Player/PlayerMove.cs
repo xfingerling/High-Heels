@@ -7,13 +7,14 @@ public class PlayerMove : MonoBehaviour
     [SerializeField] private float _xSpeed;
     [SerializeField] private int _limitX = 2;
     [SerializeField] private float _gravity = 9.81f;
+    [SerializeField] private float _tiltSpeed = 10;
+    [SerializeField] private float _balanceForce = 15;
 
     private Player _player;
     private Camera _camera;
     private Vector3 _moveVector;
     private Vector3 _startTouchPos, _currentPosPlayer, _swipeDirection;
-    private float _leftLimitPoint;
-    private float _rightLimitPoint;
+    private float _leftLimitPoint, _rightLimitPoint;
     private float _limitVelocity = 20f;
     private float _verticalVelocity;
 
@@ -33,6 +34,23 @@ public class PlayerMove : MonoBehaviour
         _moveVector.x = GetLimitXPosition(_swipeDirection.x);
 
         transform.DOMoveX(_moveVector.x, 0.5f);
+        transform.Translate(Vector3.forward * _runningSpeed * Time.deltaTime);
+    }
+
+    public void MoveBalance()
+    {
+        UpdateSwipeDirection();
+
+        float randomSideTilt = transform.rotation.z < 0 ? -1 : 1;
+
+        if (TouchUtility.TouchCount > 0)
+        {
+            if (TouchUtility.GetTouch(0).phase == TouchPhase.Moved)
+                transform.Rotate(new Vector3(0, 0, -_swipeDirection.x * _balanceForce) * Time.deltaTime);
+        }
+        else
+            transform.Rotate(new Vector3(0, 0, _tiltSpeed * randomSideTilt) * Time.deltaTime);
+
         transform.Translate(Vector3.forward * _runningSpeed * Time.deltaTime);
     }
 
