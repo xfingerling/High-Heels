@@ -9,7 +9,6 @@ public class MovingWall : MonoBehaviour
     [SerializeField] private float _speed;
 
     private Vector3 _from, _to;
-    private float _wallSize = 1;
 
     private void Awake()
     {

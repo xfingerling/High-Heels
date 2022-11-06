@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using DG.Tweening;
 using UnityEngine;
 
 public class Player : MonoBehaviour
@@ -23,9 +22,9 @@ public class Player : MonoBehaviour
     public ParticleSystem ConffetiParticle => _conffetiParticle;
     public PlayerAudioSources AudioSources { get; private set; }
 
+    private int heelAmount => _heelPool.GetAmountActiveHeels();
     private IState _currentState => PlayerState.currentState;
     private HeelPool _heelPool;
-    private int _heelCount;
     private List<Heels> _pickedHeels;
     private Wall _prevWall;
     private FinishWall _lastFinishWall;
@@ -34,13 +33,12 @@ public class Player : MonoBehaviour
     private void Awake()
     {
         _playerInteractor = Game.GetInteractor<PlayerInteractor>();
-
-        _heelPool = new HeelPool(transform, 10);
-
-        PlayerState = new PlayerState();
         Animator = GetComponentInChildren<Animator>();
         AudioSources = GetComponentInChildren<PlayerAudioSources>();
 
+        PlayerState = new PlayerState();
+
+        _heelPool = new HeelPool(transform, 20);
         _pickedHeels = new List<Heels>();
     }
 
@@ -57,9 +55,9 @@ public class Player : MonoBehaviour
         FinishWall finishWall = other.GetComponent<FinishWall>();
         Heels heels = other.GetComponent<Heels>();
         Coin coin = other.GetComponent<Coin>();
-        BalanceBoard balanceBoard = other.GetComponent<BalanceBoard>();
+        BalanceBoardTrigger balanceBoard = other.GetComponent<BalanceBoardTrigger>();
 
-        if (wall != null)
+        if (wall)
         {
             if (_prevWall == null)
             {
@@ -76,41 +74,40 @@ public class Player : MonoBehaviour
             }
         }
 
-        if (heels != null)
+        if (heels)
             PickupHeels(heels);
 
-        if (finishWall != null)
+        if (finishWall)
         {
             LoseHeels(finishWall.Height);
 
-            if (_heelCount == 0)
+            if (heelAmount == 0)
             {
                 _lastFinishWall = finishWall;
                 PlayerState.SetState<PLayerStateFinish>();
             }
         }
 
-        if (coin != null)
+        if (coin)
             PickupCoin();
 
-        if (other.CompareTag(typeof(BalanceBoard).Name))
+        if (balanceBoard)
             PlayerState.SetState<PlayerStateBalance>();
     }
 
     private void OnTriggerExit(Collider other)
     {
-        if (other.CompareTag(typeof(BalanceBoard).Name))
-        {
+        BalanceBoardTrigger balanceBoard = other.GetComponent<BalanceBoardTrigger>();
+
+        if (balanceBoard)
             PlayerState.SetState<PlayerStateRunning>();
-            transform.DORotate(Vector3.zero, 0.5f);
-        }
+
     }
 
     public void ResetPlayer()
     {
         transform.position = Vector3.zero;
-        _heelPool.DicrementHeels(_heelCount);
-        _heelCount = 0;
+        _heelPool.DicrementHeels(heelAmount);
         _prevWall = null;
         _pickedHeels.Clear();
     }
@@ -155,7 +152,7 @@ public class Player : MonoBehaviour
 
     private void CheckDeath(int value)
     {
-        if (value > _heelCount)
+        if (value > heelAmount)
             PlayerState.SetState<PlayerStateDeath>();
     }
 
@@ -172,10 +169,8 @@ public class Player : MonoBehaviour
         _pickedHeels.Add(heels);
         _heelPool.IncrementHeels();
 
-        _heelCount++;
-
-        transform.position = new Vector3(transform.position.x, _heelCount, transform.position.z);
-        _groundCheckerPivot.transform.localPosition = new Vector3(0, -_heelCount, 0);
+        transform.position = new Vector3(transform.position.x, heelAmount, transform.position.z);
+        _groundCheckerPivot.transform.localPosition = new Vector3(0, -heelAmount, 0);
 
         AudioSources.Pickup.Play();
     }
@@ -184,7 +179,7 @@ public class Player : MonoBehaviour
     {
         CheckDeath(value);
 
-        value = value > _heelCount ? _heelCount : value;
+        value = value > heelAmount ? heelAmount : value;
 
         _heelPool.DicrementHeels(value);
 
@@ -197,7 +192,6 @@ public class Player : MonoBehaviour
         }
 
         _groundCheckerPivot.transform.localPosition = new Vector3(0, _groundCheckerPivot.transform.localPosition.y + value, 0);
-        _heelCount -= value;
 
         AudioSources.Drop.Play();
     }

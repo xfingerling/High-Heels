@@ -1,4 +1,5 @@
 using DG.Tweening;
+using UnityEngine;
 
 public class PlayerStateBalance : PlayerStateBase, IState
 {
@@ -9,7 +10,7 @@ public class PlayerStateBalance : PlayerStateBase, IState
 
     public void Destruct()
     {
-
+        player.transform.DORotate(Vector3.zero, 0.5f);
     }
 
     public void Transition()

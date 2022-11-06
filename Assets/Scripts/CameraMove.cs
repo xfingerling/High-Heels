@@ -2,9 +2,11 @@ using UnityEngine;
 
 public class CameraMove : MonoBehaviour
 {
-    [SerializeField] private float _lerpRate = 5f;
+    [SerializeField] private float _lerpRate = 2f;
+    [SerializeField] private float _distnceRate = 0.5f;
     [SerializeField] private Vector3 _offset;
 
+    private Player _player;
     private Transform _target;
 
     private void Awake()
@@ -14,10 +16,12 @@ public class CameraMove : MonoBehaviour
 
     private void LateUpdate()
     {
-        if (_target == null) return;
+        if (_player == null) return;
 
         Vector3 targetPos = new Vector3(0, _target.position.y, _target.position.z);
-        transform.position = Vector3.Lerp(transform.position, targetPos - _offset, Time.deltaTime * _lerpRate);
+        Vector3 newCameraPos = targetPos - _offset;
+        newCameraPos.z = -_distnceRate * targetPos.y + newCameraPos.z;
+        transform.position = Vector3.Lerp(transform.position, newCameraPos, Time.deltaTime * _lerpRate);
     }
 
     private void OnGameInitialized()
@@ -25,6 +29,7 @@ public class CameraMove : MonoBehaviour
         Game.OnGameInitializedEvent -= OnGameInitialized;
 
         var playerInteractor = Game.GetInteractor<PlayerInteractor>();
-        _target = playerInteractor.Player.transform;
+        _player = playerInteractor.Player;
+        _target = _player.transform;
     }
 }
