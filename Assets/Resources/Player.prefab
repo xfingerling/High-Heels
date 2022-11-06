@@ -204,9 +204,9 @@ MonoBehaviour:
   _xSpeed: 5
   _limitX: 2
   _gravity: 9.81
-  _tiltSpeed: 10
-  _balanceForce: 15
-  _tiltLimit: 0.4
+  _tiltSpeed: 15
+  _balanceForce: 25
+  _tiltLimit: 0.3
 --- !u!54 &629104724747545056
 Rigidbody:
   m_ObjectHideFlags: 0

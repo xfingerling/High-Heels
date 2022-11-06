@@ -45,7 +45,7 @@ public class PlayerMove : MonoBehaviour
         float randomSideTilt = transform.rotation.z < 0 ? -1 : 1;
 
         if (Mathf.Abs(transform.rotation.z) > _tiltLimit)
-            transform.DOMoveX(1 * -randomSideTilt, 0.5f);
+            transform.DOMoveY(-1, 0.3f);
 
 
         if (TouchUtility.TouchCount > 0)
@@ -53,8 +53,8 @@ public class PlayerMove : MonoBehaviour
             if (TouchUtility.GetTouch(0).phase == TouchPhase.Moved)
                 transform.Rotate(new Vector3(0, 0, -_swipeDirection.x * _balanceForce) * Time.deltaTime);
         }
-        else
-            transform.Rotate(new Vector3(0, 0, _tiltSpeed * randomSideTilt) * Time.deltaTime);
+
+        transform.Rotate(new Vector3(0, 0, _tiltSpeed * randomSideTilt) * Time.deltaTime);
 
         transform.Translate(Vector3.forward * _runningSpeed * Time.deltaTime);
     }
